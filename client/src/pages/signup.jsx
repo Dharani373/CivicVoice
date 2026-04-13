@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,7 +23,7 @@ const Signup = () => {
 
     try {
       await axios.post("http://localhost:5000/api/auth/signup", formData);
-      alert("Signup successful ✅");
+      alert("Signup successful");
     } catch (error) {
       alert(error.response?.data?.message || "Signup failed");
     }
@@ -65,6 +67,13 @@ const Signup = () => {
         />
 
         <button className="auth-btn">Signup</button>
+
+        <p className="auth-switch-text">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")} className="auth-link">
+            Login
+          </span>
+        </p>
       </form>
     </div>
   );

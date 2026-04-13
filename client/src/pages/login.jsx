@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,7 +36,7 @@ const Login = () => {
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit} className="auth-card">
-        <h2 className="auth-title">Welcome Back</h2>
+        <h2 className="auth-title">Login</h2>
 
         <input
           className="auth-input"
@@ -61,6 +63,12 @@ const Login = () => {
         />
 
         <button className="auth-btn">Login</button>
+        <p className="auth-switch-text">
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/signup")} className="auth-link">
+            Signup
+          </span>
+        </p>
       </form>
     </div>
   );
