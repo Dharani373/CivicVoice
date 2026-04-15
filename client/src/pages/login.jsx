@@ -26,13 +26,17 @@ const Login = () => {
         formData,
       );
 
+      // save auth data
       localStorage.setItem("token", res.data.token);
-      alert("Login successful ✅");
+      localStorage.setItem("userId", res.data.user._id);
+
+      alert("Login successful");
+
+      navigate("/dashboard"); // redirect to dashboard
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
     }
   };
-
   return (
     <div className="auth-container">
       <form onSubmit={handleSubmit} className="auth-card">
