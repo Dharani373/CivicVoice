@@ -23,7 +23,10 @@ const Signup = () => {
 
     try {
       await axios.post("http://localhost:5000/api/auth/signup", formData);
+
       alert("Signup successful");
+
+      navigate("/login"); //redirect after signup
     } catch (error) {
       alert(error.response?.data?.message || "Signup failed");
     }
