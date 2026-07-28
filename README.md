@@ -1,142 +1,106 @@
-# 🏙️ CivicVoice — Hyperlocal Civic Complaint & Resolution Platform
+#  CivicVoice – Civic Issue Reporting & Resolution Platform
 
-CivicVoice is a **full-stack MERN web application** that empowers citizens to report local civic issues such as potholes, garbage dumps, broken streetlights, water leakage, and road damage with **photos, GPS location, and real-time status tracking**.
-
-The platform promotes **public accountability, transparent issue resolution, and community-driven prioritization** through upvotes, live notifications, and map-based issue visibility.
-
-> 🚀 Built as a **production-ready scalable MVP** using **React, Tailwind CSS, Node.js, Express, MongoDB, Socket.io, Leaflet, and Cloudinary**.
+CivicVoice is a **full-stack MERN web application** that enables citizens to report, monitor, and track civic issues such as potholes, garbage dumps, broken streetlights, water leakages, and road damage. The platform provides a centralized system where citizens can submit complaints while administrators manage and resolve them through an organized workflow.
 
 ---
 
-## 🌟 Key Highlights
+##  Features
 
-- 📍 **Map + Feed Hybrid Homepage**
-- 📸 **Image-based issue reporting**
-- 📌 **GPS auto-detect + manual pin support**
-- 👍 **Duplicate prevention via upvotes**
-- 🔔 **Real-time status notifications**
-- 📊 **Admin analytics dashboard**
-- 📡 **Geospatial issue search**
-- 🌙 **Dark mode ready**
-- 📱 **Mobile-first responsive UI**
-- ⚡ **Optimistic UI updates**
+### 👤 User Module
 
----
-
-## 🧠 Problem Statement
-
-Citizens often struggle to report local civic issues efficiently, and once reported, the complaint process lacks transparency.
-
-CivicVoice solves this by offering:
-
-- quick issue reporting in under **30 seconds**
-- transparent status progression
-- real-time public updates
-- issue prioritization through community upvotes
-- admin accountability dashboard
-- location-based issue visibility
+- Secure user registration and login
+- Submit civic complaints with:
+  - Title
+  - Description
+  - Category
+  - Location
+  - Image upload
+- Track complaint status
+- View all submitted complaints on a personalized dashboard
+- Responsive user interface for desktop and mobile devices
 
 ---
 
-## 🎯 Core Features
+###  Admin Module
 
-### 👤 Citizen Features
-- JWT Authentication (Signup / Login / Logout)
-- Report issue with:
-  - title
-  - description
-  - category
-  - images
-  - GPS / map pin
-- Infinite issue feed
-- Filter by:
-  - category
-  - status
-  - radius
-  - nearby issues
-- Upvote issues
-- Real-time comments
-- User dashboard
-- Notification center
-- Status timeline tracking
-
-### 🛠️ Admin Features
-- Admin dashboard
-- Role-based access control
-- Update issue status workflow
-- Public admin response
-- Resolution analytics
-- Resolution time charts
-- Jurisdiction-based issue management
+- Secure admin login
+- View all reported complaints
+- Update complaint status:
+  - Open
+  - In Progress
+  - Resolved
+- Manage and monitor complaints through an admin dashboard
 
 ---
 
-## 🗺️ Map Features
-- Interactive map using **Leaflet.js**
-- Issue markers
-- Marker clustering
-- Radius-based issue fetching
-- Click pin → issue preview card
-- Nearby issue search using geospatial queries
+### 📊 Dashboard
+
+- View total reports
+- Number of resolved issues
+- Number of issues in progress
+- Number of open complaints
+- Dynamic report listing
+- Complaint status tracking
 
 ---
 
-## ⚙️ Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js
-- Tailwind CSS
 - React Router DOM
 - Axios
-- React Hot Toast
-- Leaflet.js
-- Socket.io Client
+- CSS3
+- Lucide React Icons
 
 ### Backend
+
 - Node.js
 - Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-- Bcrypt.js
-- Socket.io
-- Multer
-- Cloudinary
-- Nodemailer
 
-### Deployment
-- Frontend → Vercel
-- Backend → Render
-- Database → MongoDB Atlas
-- Media → Cloudinary
+### Database
+
+- MongoDB Atlas
+- Mongoose
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
-civicvoice/
+CivicVoice
 │
-├── client/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── context/
-│   │   ├── routes/
-│   │   └── utils/
+├── client
+│   ├── src
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── assets
+│   │   └── App.jsx
 │
-├── server/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── sockets/
-│   ├── utils/
+├── server
+│   ├── config
+│   ├── models
+│   ├── routes
+│   ├── controllers
 │   └── server.js
 │
-├── README.md
-└── .gitignore
+└── README.md
+```
+
+## 🎯 Future Improvements
+
+- Interactive map integration
+- Complaint search and filters
+- Upvote system
+- Resolution notes
+- Email notifications
+- Real-time updates using Socket.IO
+- Complaint analytics dashboard
+
+---
+
+##  Author
+Dharani - Dharani373
+
+---
