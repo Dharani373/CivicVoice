@@ -28,9 +28,6 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <button className="report-btn">
-          <Plus size={18} /> Report
-        </button>
         <Bell size={20} />
         <Moon size={20} />
         <span>Sign Out</span>

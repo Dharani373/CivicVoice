@@ -1,27 +1,50 @@
-import { FileText, CheckCircle, Clock3, AlertCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { FileText, CheckCircle, Clock3, AlertCircle, Plus } from "lucide-react";
 import Navbar from "../components/Navbar";
 
 export default function Dashboard() {
-  const stats = [
-    { label: "Total Reports", value: 12, icon: FileText, color: "blue" },
-    { label: "Resolved", value: 5, icon: CheckCircle, color: "green" },
-    { label: "In Progress", value: 4, icon: Clock3, color: "yellow" },
-    { label: "Open", value: 3, icon: AlertCircle, color: "red" },
-  ];
+  const navigate = useNavigate();
+  const [reports, setReports] = useState([]);
 
-  const reports = [
+  useEffect(() => {
+    fetchReports();
+  }, []);
+
+  const fetchReports = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/reports");
+      setReports(res.data);
+    } catch (err) {
+      console.error("Error fetching reports:", err);
+    }
+  };
+
+  const stats = [
     {
-      title: "Absence of StreetLight",
-      description:
-        "There is no functioning streetlight in this area, making the surroundings dark after sunset and unsafe for pedestrians.",
-      category: "Streetlight",
-      location: "17.3046, 78.5412",
-      status: "Reported",
-      upvotes: 8,
-      time: "2 days ago",
-      progress: 60,
-      image:
-        "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1200&auto=format&fit=crop",
+      label: "Total Reports",
+      value: reports.length,
+      icon: FileText,
+      color: "blue",
+    },
+    {
+      label: "Resolved",
+      value: reports.filter((r) => r.status === "Resolved").length,
+      icon: CheckCircle,
+      color: "green",
+    },
+    {
+      label: "In Progress",
+      value: reports.filter((r) => r.status === "In Progress").length,
+      icon: Clock3,
+      color: "yellow",
+    },
+    {
+      label: "Open",
+      value: reports.filter((r) => r.status === "Open").length,
+      icon: AlertCircle,
+      color: "red",
     },
   ];
 
@@ -31,23 +54,26 @@ export default function Dashboard() {
 
       <div className="dashboard-page">
         <div className="dashboard-container">
+          {/* HEADER */}
+
           <div className="dashboard-header">
-            <div className="header-text">
+            <div className="header-left">
               <h1>My Dashboard</h1>
+              <p>Manage and track your civic issue reports.</p>
             </div>
-            <div className="impact-card">
-              <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=300&auto=format&fit=crop"
-                alt="community"
-              />
-              <div className="impact-info">
-                <p className="impact-label">Community Impact</p>
-                <span className="impact-desc">
-                  Your reports helped improve 3 local areas
-                </span>
-              </div>
+
+            <div className="header-right">
+              <button
+                className="report-btn"
+                onClick={() => navigate("/report")}
+              >
+                <Plus size={18} />
+                <span>Report Issue</span>
+              </button>
             </div>
           </div>
+
+          {/* STATS */}
 
           <div className="stats-grid">
             {stats.map((stat) => (
@@ -57,62 +83,97 @@ export default function Dashboard() {
                     className={`stat-icon icon-${stat.color}`}
                     strokeWidth={2.2}
                   />
-                  <span className={`stat-value text-${stat.color}`}>
+
+                  <span className={`stat-value icon-${stat.color}`}>
                     {stat.value}
                   </span>
                 </div>
+
                 <p className="stat-label">{stat.label}</p>
               </div>
             ))}
           </div>
 
+          {/* TABS */}
+
           <div className="dashboard-tabs">
             <button className="tab-btn active">My Reports</button>
+
             <button className="tab-btn">Upvoted</button>
           </div>
 
+          {/* REPORTS */}
+
           <div className="reports-list">
-            {reports.map((report) => (
-              <div key={report.title} className="report-card">
-                <div className="report-image-container">
-                  <img
-                    src={report.image}
-                    alt={report.title}
-                    className="report-image"
-                  />
-                </div>
-                <div className="report-content">
-                  <div className="report-header-row">
-                    <div className="title-group">
-                      <h2>{report.title}</h2>
-                      <p className="description">{report.description}</p>
-                    </div>
-                    <span className="status-badge">{report.status}</span>
-                  </div>
+            {reports.length === 0 ? (
+              <div className="no-reports">
+                <FileText size={70} className="empty-icon" />
 
-                  <div className="report-meta">
-                    <span className="meta-item">💡 {report.category}</span>
-                    <span className="meta-item">📍 {report.location}</span>
-                    <span className="meta-item">🕒 {report.time}</span>
-                  </div>
+                <h3>No Reports Yet</h3>
 
-                  <div className="progress-section">
-                    <div className="progress-header">
-                      <span>Resolution Progress</span>
-                      <span className="progress-perc">{report.progress}%</span>
-                    </div>
-                    <div className="progress-bar">
-                      <div
-                        className="progress-fill"
-                        style={{ width: `${report.progress}%` }}
-                      />
-                    </div>
-                  </div>
+                <p>
+                  Start making your community better by reporting your first
+                  civic issue.
+                </p>
 
-                  <div className="upvotes">🔥 {report.upvotes} upvotes</div>
-                </div>
+                <button
+                  className="report-btn"
+                  onClick={() => navigate("/report")}
+                >
+                  <Plus size={18} />
+                  <span>Report Issue</span>
+                </button>
               </div>
-            ))}
+            ) : (
+              reports.map((report) => (
+                <div key={report._id} className="report-card">
+                  <div className="report-image-container">
+                    <img
+                      className="report-image"
+                      src={
+                        report.image ||
+                        "https://via.placeholder.com/500x300?text=No+Image"
+                      }
+                      alt={report.title}
+                    />
+                  </div>
+
+                  <div className="report-content">
+                    <div className="report-header">
+                      <div>
+                        <h2>{report.title}</h2>
+
+                        <p className="description">{report.description}</p>
+                      </div>
+
+                      <span
+                        className={`status-badge ${report.status
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                      >
+                        {report.status}
+                      </span>
+                    </div>
+
+                    <div className="report-meta">
+                      <span>💡 {report.category}</span>
+
+                      <span>📍 {report.location}</span>
+
+                      <span>
+                        🗓️ {new Date(report.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    <div className="report-footer">
+                      <div className="upvotes">
+                        👍 {report.upvotes ?? 0} Upvotes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
