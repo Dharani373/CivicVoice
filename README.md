@@ -1,106 +1,219 @@
-#  CivicVoice – Civic Issue Reporting & Resolution Platform
+# 🚀 CivicVoice - Hyperlocal Civic Complaint & Resolution Platform
 
-CivicVoice is a **full-stack MERN web application** that enables citizens to report, monitor, and track civic issues such as potholes, garbage dumps, broken streetlights, water leakages, and road damage. The platform provides a centralized system where citizens can submit complaints while administrators manage and resolve them through an organized workflow.
+CivicVoice is a full-stack MERN application that enables citizens to report local civic issues while providing authorities with a centralized dashboard to manage and resolve complaints efficiently.
 
----
-
-##  Features
-
-### 👤 User Module
-
-- Secure user registration and login
-- Submit civic complaints with:
-  - Title
-  - Description
-  - Category
-  - Location
-  - Image upload
-- Track complaint status
-- View all submitted complaints on a personalized dashboard
-- Responsive user interface for desktop and mobile devices
+The platform supports secure authentication, image uploads, geolocation, complaint management, real-time updates using Socket.IO, and an analytics dashboard for administrators.
 
 ---
 
-###  Admin Module
+## 📌 Features
 
-- Secure admin login
+### 👤 Citizen
+
+- Secure Signup & Login using JWT Authentication
+- Report civic complaints
+- Upload complaint images (Cloudinary)
+- Automatic location detection using Geolocation API
+- Reverse Geocoding to convert coordinates into readable addresses
+- View all community complaints
+- View personal complaints
+- Upvote complaints
+- Real-time complaint status updates
+- Responsive user interface
+
+### 👨‍💼 Administrator
+
+- Secure Admin Login
+- Dashboard with platform statistics
 - View all reported complaints
-- Update complaint status:
-  - Open
-  - In Progress
-  - Resolved
-- Manage and monitor complaints through an admin dashboard
+- Search complaints
+- Filter by category and status
+- Complaint details modal
+- Update complaint status
+- Analytics dashboard
+- Real-time complaint management
 
 ---
 
-### 📊 Dashboard
+## ⚡ Real-Time Features
 
-- View total reports
-- Number of resolved issues
-- Number of issues in progress
-- Number of open complaints
-- Dynamic report listing
-- Complaint status tracking
+Socket.IO has been integrated to provide live updates.
+
+- New complaints appear instantly on the Admin Dashboard.
+- Complaint status changes are reflected instantly for all connected users.
+- No manual refresh required.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 ### Frontend
 
 - React.js
-- React Router DOM
+- React Router
 - Axios
+- Chart.js
+- Socket.IO Client
 - CSS3
-- Lucide React Icons
 
 ### Backend
 
 - Node.js
 - Express.js
-
-### Database
-
-- MongoDB Atlas
+- MongoDB
 - Mongoose
+- JWT Authentication
+- Socket.IO
+- Multer
+- Cloudinary
+
+### APIs
+
+- Browser Geolocation API
+- Reverse Geocoding API
+- Cloudinary Image Storage
 
 ---
 
-## 📁 Project Structure
+## 🏗 System Architecture
+
+```
+Citizen
+     │
+     ▼
+ React Frontend
+     │
+ Axios + Socket.IO
+     │
+     ▼
+Express.js Server
+     │
+ ├── JWT Authentication
+ ├── Report Management
+ ├── Admin APIs
+ ├── Socket.IO
+ │
+ ▼
+MongoDB Database
+
+Cloudinary ← Image Uploads
+
+Reverse Geocoding API ← Location Conversion
+```
+
+---
+
+## 📷 Screenshots
+
+### Citizen Dashboard
+
+(Add Screenshot Here)
+
+---
+
+### Report Complaint
+
+(Add Screenshot Here)
+
+---
+
+### My Complaints
+
+(Add Screenshot Here)
+
+---
+
+### Admin Dashboard
+
+(Add Screenshot Here)
+
+---
+
+### Analytics Dashboard
+
+(Add Screenshot Here)
+
+---
+
+## 📂 Project Structure
 
 ```
 CivicVoice
 │
 ├── client
 │   ├── src
-│   │   ├── components
-│   │   ├── pages
-│   │   ├── assets
-│   │   └── App.jsx
+│   ├── components
+│   ├── pages
+│   ├── styles
+│   └── socket.js
 │
 ├── server
-│   ├── config
+│   ├── controllers
+│   ├── middleware
 │   ├── models
 │   ├── routes
-│   ├── controllers
-│   └── server.js
+│   ├── config
+│   └── utils
 │
 └── README.md
 ```
 
-## 🎯 Future Improvements
+---
 
-- Interactive map integration
-- Complaint search and filters
-- Upvote system
-- Resolution notes
-- Email notifications
-- Real-time updates using Socket.IO
-- Complaint analytics dashboard
+## 🔐 Authentication
+
+The application uses JSON Web Tokens (JWT).
+
+Protected routes include:
+
+- Report Complaint
+- My Complaints
+- Upvote Complaint
+- Admin Dashboard
+- Complaint Status Update
+
+Role-based authorization ensures only administrators can access administrative features.
 
 ---
 
-##  Author
-Dharani - Dharani373
+## 📊 Admin Features
+
+- Complaint Statistics
+- Total Users
+- Open Complaints
+- In Progress Complaints
+- Resolved Complaints
+- Complaint Search
+- Complaint Filters
+- Complaint Details
+- Status Management
+- Analytics Charts
 
 ---
+
+## 🌍 Location Services
+
+Each complaint stores:
+
+- Latitude
+- Longitude
+- City
+- State
+- Complete Address
+
+using Browser Geolocation and Reverse Geocoding APIs.
+
+---
+
+## ☁️ Image Uploads
+
+Images are uploaded securely to Cloudinary.
+
+Uploaded complaint images are stored remotely and linked with each report.
+
+---
+
+
+## 👨‍💻 Author
+
+**K. R. Dharani**
