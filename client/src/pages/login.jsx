@@ -28,13 +28,22 @@ const Login = () => {
 
       // save auth data
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.user._id);
+      localStorage.setItem("userId", res.data.user.id);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Login successful");
-
-      navigate("/dashboard"); // redirect to dashboard
+      if (res.data.user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
+      //alert(error.response?.data?.message || "Login failed");
+
+      console.log("Full Error:", error);
+      console.log("Response:", error.response);
+
+      alert(error.response?.data?.message || error.message);
     }
   };
   return (

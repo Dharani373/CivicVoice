@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FileText, CheckCircle, Clock3, AlertCircle, Plus } from "lucide-react";
 import Navbar from "../components/Navbar";
+import socket from "../socket";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -10,14 +11,58 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchReports();
-  }, []);
 
+    socket.on("newReport", (newReport) => {
+      setReports((prevReports) => [newReport, ...prevReports]);
+    });
+
+    socket.on("statusUpdated", (updatedReport) => {
+      setReports((prevReports) =>
+        prevReports.map((report) =>
+          report._id === updatedReport._id ? updatedReport : report,
+        ),
+      );
+    });
+
+    return () => {
+      socket.off("newReport");
+      socket.off("statusUpdated");
+    };
+  }, []);
   const fetchReports = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/reports");
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get("http://localhost:5000/api/reports", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setReports(res.data);
     } catch (err) {
       console.error("Error fetching reports:", err);
+    }
+  };
+
+  const handleUpvote = async (reportId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.put(
+        `http://localhost:5000/api/reports/${reportId}/upvote`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      // Refresh reports after upvoting
+      fetchReports();
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Unable to upvote.");
     }
   };
 
@@ -158,7 +203,14 @@ export default function Dashboard() {
                     <div className="report-meta">
                       <span>💡 {report.category}</span>
 
-                      <span>📍 {report.location}</span>
+                      <span>
+                        <p>
+                          📍{" "}
+                          {report.address
+                            ? report.address
+                            : `${report.location?.latitude}, ${report.location?.longitude}`}
+                        </p>
+                      </span>
 
                       <span>
                         🗓️ {new Date(report.createdAt).toLocaleDateString()}
@@ -166,9 +218,12 @@ export default function Dashboard() {
                     </div>
 
                     <div className="report-footer">
-                      <div className="upvotes">
-                        👍 {report.upvotes ?? 0} Upvotes
-                      </div>
+                      <button
+                        className="upvote-btn"
+                        onClick={() => handleUpvote(report._id)}
+                      >
+                        👍 {report.upvotes?.length || 0} Upvotes
+                      </button>
                     </div>
                   </div>
                 </div>

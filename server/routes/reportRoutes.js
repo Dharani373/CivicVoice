@@ -1,16 +1,22 @@
 import express from "express";
-import Report from "../models/Report.js";
+import upload from "../middleware/upload.js";
+import { protect } from "../middleware/authMiddleware.js";
+
+import {
+  getReports,
+  getMyReports,
+  createReport,
+  toggleUpvote,
+} from "../controllers/reportController.js";
 
 const router = express.Router();
 
-// Get all reports
-router.get("/", async (req, res) => {
-  try {
-    const reports = await Report.find().sort({ createdAt: -1 });
-    res.json(reports);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.get("/my-reports", protect, getMyReports);
+
+router.get("/", getReports);
+
+router.post("/", protect, upload.single("image"), createReport);
+
+router.put("/:id/upvote", protect, toggleUpvote);
 
 export default router;
