@@ -1,4 +1,4 @@
-# 🚀 CivicVoice - Hyperlocal Civic Complaint & Resolution Platform
+#  CivicVoice - Hyperlocal Civic Complaint & Resolution Platform
 
 CivicVoice is a full-stack MERN application that enables citizens to report local civic issues while providing authorities with a centralized dashboard to manage and resolve complaints efficiently.
 
@@ -6,9 +6,9 @@ The platform supports secure authentication, image uploads, geolocation, complai
 
 ---
 
-## 📌 Features
+##  Features
 
-### 👤 Citizen
+###  Citizen
 
 - Secure Signup & Login using JWT Authentication
 - Report civic complaints
@@ -21,7 +21,7 @@ The platform supports secure authentication, image uploads, geolocation, complai
 - Real-time complaint status updates
 - Responsive user interface
 
-### 👨‍💼 Administrator
+###  Administrator
 
 - Secure Admin Login
 - Dashboard with platform statistics
@@ -35,7 +35,7 @@ The platform supports secure authentication, image uploads, geolocation, complai
 
 ---
 
-## ⚡ Real-Time Features
+##  Real-Time Features
 
 Socket.IO has been integrated to provide live updates.
 
@@ -45,7 +45,7 @@ Socket.IO has been integrated to provide live updates.
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Frontend
 
@@ -75,7 +75,7 @@ Socket.IO has been integrated to provide live updates.
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 ```
 Citizen
@@ -100,7 +100,7 @@ Cloudinary ← Image Uploads
 
 Reverse Geocoding API ← Location Conversion
 ```
-## 📷 Screenshots
+##  Screenshots
 
 | Feature | Screenshot |
 |---|---|
@@ -113,7 +113,7 @@ Reverse Geocoding API ← Location Conversion
 | **Admin Dashboard** | <img src="docs/screenshots/admin%20dashboard.png" alt="Admin Dashboard" width="600"> |
 | **Admin Complaint Details** | <img src="docs/screenshots/admin%20complaint%20details.png" alt="Admin Complaint Details" width="600"> |
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 CivicVoice
@@ -138,7 +138,7 @@ CivicVoice
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 The application uses JSON Web Tokens (JWT).
 
@@ -154,7 +154,7 @@ Role-based authorization ensures only administrators can access administrative f
 
 ---
 
-## 📊 Admin Features
+##  Admin Features
 
 - Complaint Statistics
 - Total Users
@@ -169,7 +169,7 @@ Role-based authorization ensures only administrators can access administrative f
 
 ---
 
-## 🌍 Location Services
+##  Location Services
 
 Each complaint stores:
 
@@ -183,7 +183,7 @@ using Browser Geolocation and Reverse Geocoding APIs.
 
 ---
 
-## ☁️ Image Uploads
+##  Image Uploads
 
 Images are uploaded securely to Cloudinary.
 
@@ -192,6 +192,6 @@ Uploaded complaint images are stored remotely and linked with each report.
 ---
 
 
-## 👨‍💻 Author
+##  Author
 
 **K. R. Dharani**
