@@ -100,40 +100,18 @@ Cloudinary ← Image Uploads
 
 Reverse Geocoding API ← Location Conversion
 ```
-
----
-
 ## 📷 Screenshots
 
-### Citizen Dashboard
-
-(Add Screenshot Here)
-
----
-
-### Report Complaint
-
-(Add Screenshot Here)
-
----
-
-### My Complaints
-
-(Add Screenshot Here)
-
----
-
-### Admin Dashboard
-
-(Add Screenshot Here)
-
----
-
-### Analytics Dashboard
-
-(Add Screenshot Here)
-
----
+| Feature | Screenshot |
+|---|---|
+| **Citizen Dashboard** | <img src="docs/screenshots/citizen%20dashboard.png" alt="Citizen Dashboard" width="600"> |
+| **Report Complaint - Details** | <img src="docs/screenshots/report%20details%20modal.png" alt="Report Complaint Details" width="600"> |
+| **Report Complaint - Location** | <img src="docs/screenshots/report%20issue%20locatio.png" alt="Report Complaint Location" width="600"> |
+| **Report Complaint - Photo Upload** | <img src="docs/screenshots/report%20issue%20image.png" alt="Report Complaint Photo Upload" width="600"> |
+| **Report Complaint - Review** | <img src="docs/screenshots/report%20issue%20photo.png" alt="Report Complaint Review" width="600"> |
+| **My Complaints** | <img src="docs/screenshots/my%20complaints.png" alt="My Complaints" width="600"> |
+| **Admin Dashboard** | <img src="docs/screenshots/admin%20dashboard.png" alt="Admin Dashboard" width="600"> |
+| **Admin Complaint Details** | <img src="docs/screenshots/admin%20complaint%20details.png" alt="Admin Complaint Details" width="600"> |
 
 ## 📂 Project Structure
 
